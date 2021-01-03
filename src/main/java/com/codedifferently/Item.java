@@ -1,4 +1,6 @@
-package com.codedifferently.hurt;
+package com.codedifferently;
+
+import java.util.Map;
 
 public class Item {
 
@@ -7,7 +9,11 @@ public class Item {
     private String type;
     private String expiration;
 
-    public Item() {
+    public Item(Map<String,String>rawDataMap){
+        this.name = rawDataMap.get("name");
+        this.price = rawDataMap.get("price");
+        this.type = rawDataMap.get("type");
+        this.expiration = rawDataMap.get("expiration");
     }
 
     public String getName() {
@@ -42,5 +48,7 @@ public class Item {
         this.expiration = expiration;
     }
 
-
+    public String toString(){
+        return name + " " + price + " " + type + " " + expiration + " ";
+    }
 }

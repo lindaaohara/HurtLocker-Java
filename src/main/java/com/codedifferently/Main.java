@@ -1,4 +1,4 @@
-package com.codedifferently.hurt;
+package com.codedifferently;
 
 import org.apache.log4j.Logger;
 import org.apache.commons.io.IOUtils;
