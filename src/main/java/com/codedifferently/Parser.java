@@ -63,30 +63,25 @@ public class Parser {
 
 
 
-    public String findFieldByKeyValue(String key, String cleanedData) throws Exception{
+    public String findFieldByKeyValue(String key, String cleanedData) throws Exception {
         String[] dataArray = cleanedData.split(";");
         String value = null;
-        for(String item : dataArray){
-            if(item.contains(key)) {
+        for (String item : dataArray) {
+            if (item.contains(key)) {
                 String[] itemArray = item.split(":");
 
                 if (itemArray.length < 2) {
                     errorCounter++;
                     throw new ItemMissingValueException();
                 }
-
-                if (value == null) {
-                    errorCounter++;
-                    throw new ItemMissingKeyException();
-                }
                 value = itemArray[1];
+
+                if (value == null) throw new ItemMissingValueException();
+                errorCounter++;
             }
-
         }
-
         return value;
     }
-
 
 
 
