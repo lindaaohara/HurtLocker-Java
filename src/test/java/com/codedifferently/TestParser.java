@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class TestParser {
     private static String sampleCleanedData="name:milk;price:3.23;type:food;expiration:1/04/2016";
     private static String sampleMissingValue="name:;  price:3.23; type: food; expiration: 1/04/2016";
-    private static String sampleMissingKey= ":milk;  price:3.23; type: food; expiration: 1/04/2016";
+    private static String sampleMissingKey= ":milk;price:3.23;type: food;expiration: 1/04/2016";
 
     Parser parser;
     @Before

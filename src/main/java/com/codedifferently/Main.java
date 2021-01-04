@@ -42,7 +42,7 @@ public class Main {
             HashMap<String, Integer> pricesOccurances = new HashMap<String, Integer>();
             for(String price: groceryCount.get(keyNameOfItem)){
                 pricesOccurances.put(price, pricesOccurances.get(price) != null ? pricesOccurances.get(price) + 1 : 1 );
-                System.out.println(ItemStringFormatter.createColumnString(keyNameOfItem,pricesOccurances.get(price)));
+                System.out.println(ItemStringFormatter.createColumnString(price,pricesOccurances.get(price)));
             }
         }
     }

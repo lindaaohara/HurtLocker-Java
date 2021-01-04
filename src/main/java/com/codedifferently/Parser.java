@@ -67,8 +67,11 @@ public class Parser {
         String[] dataArray = cleanedData.split(";");
         String value = null;
         for (String item : dataArray) {
-            if (item.contains(key)) {
-                String[] itemArray = item.split(":");
+            System.out.println("item: " + item);
+            System.out.println("key: " + key);
+            String[] itemArray = item.split(":");
+            System.out.println("itemArray[0]: " + itemArray[0]);
+            if (listOfKeys.contains(itemArray[0])) {
 
                 if (itemArray.length < 2) {
                     errorCounter++;
@@ -76,8 +79,11 @@ public class Parser {
                 }
                 value = itemArray[1];
 
-                if (value == null) throw new ItemMissingValueException();
+
+            } else {
                 errorCounter++;
+                throw new ItemMissingKeyException();
+
             }
         }
         return value;
