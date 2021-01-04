@@ -4,17 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class DataReader {
-    /*
-    public ArrayList<String> rawDataReader(String data){
-        String[] dataArray = data.split("##");
-        ArrayList<String> dataList = new ArrayList<>(Arrays.asList(dataArray));
-        return dataList;
-    }
+    // take in raw data
+    // replace unwanted special characters (keep #./:;) with ;
+    // split string into array at ## for end of line
 
-     */
-
-
-    public static String rawDataReader(String data){
+    public static String[] rawDataReader(String data){
         String cleanedData = null;
         String[] dataArray;
 
@@ -22,6 +16,7 @@ public class DataReader {
         dataNoSpecialChars = dataNoSpecialChars.toLowerCase();
         dataArray =dataNoSpecialChars.split("##");
         cleanedData =Arrays.toString(dataArray);
-        return cleanedData;
+        System.out.println(cleanedData);
+        return dataArray;
     }
 }

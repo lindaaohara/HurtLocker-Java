@@ -8,6 +8,7 @@ public class Item {
     private String price;
     private String type;
     private String expiration;
+    public int count;
 
     public Item(Map<String,String>rawDataMap){
         this.name = rawDataMap.get("name");
@@ -51,4 +52,7 @@ public class Item {
     public String toString(){
         return name + " " + price + " " + type + " " + expiration + " ";
     }
+
+
+
 }

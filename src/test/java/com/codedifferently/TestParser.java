@@ -32,11 +32,21 @@ public class TestParser {
         Assert.assertEquals(expected, actual);
     }
 
-    @Test
-    public void testErrorCounter() throws Exception {
+    @Test(expected = ItemMissingValueException.class)
+    public void testErrorCounter1() throws Exception {
 
         int expectedErrorCounter =1;
         parser.findFieldByKeyValue("name", sampleMissingValue);
+        int actualErrorCounter = parser.getErrorCounter();
+
+        Assert.assertEquals(expectedErrorCounter, actualErrorCounter);
+    }
+
+    @Test(expected = ItemMissingKeyException.class)
+    public void testErrorCounter2() throws Exception {
+
+        int expectedErrorCounter =1;
+        parser.findFieldByKeyValue("name", sampleMissingKey);
         int actualErrorCounter = parser.getErrorCounter();
 
         Assert.assertEquals(expectedErrorCounter, actualErrorCounter);

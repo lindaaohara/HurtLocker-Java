@@ -9,12 +9,11 @@ import java.util.*;
 
 public class Parser {
 
-    //split result of readRawDataToString into lines at "##"
-    //replace ^%*!@ characters after Food with ;
+    //take in cleaned data string from DataReader
     //separate at ; to get keys
     //set the map with keys for name, price, type, and expiration
     //set value based on :
-    //do regex on keys and values
+    //fix c0okies by replacing zero
 
     private ArrayList<String> listOfKeys;
 
@@ -28,6 +27,18 @@ public class Parser {
         listOfKeys.add("type");
         listOfKeys.add("expiration");
 
+
+    }
+    public List<Item> makeItemList(String[] cleanedDataArray) throws Exception {
+       List<Item> itemsList = new ArrayList();
+       for(String cleanedData : cleanedDataArray){
+           Item item = makeItemFromString(cleanedData);
+           if(item != null){
+               itemsList.add(item);
+           }
+
+       }
+       return itemsList;
     }
 
     public Item makeItemFromString(String cleanedData) throws Exception {
@@ -38,11 +49,16 @@ public class Parser {
                 itemData.put(key, value);
             }
             return new Item(itemData);
-        } catch (ItemMissingKeyException exception) {
-            throw new ItemCreationException();
-        } catch (ItemMissingValueException exception) {
-            throw new ItemCreationException();
-        }
+
+            } catch(ItemMissingKeyException exception){
+                System.out.println("MissingKeyException");
+                //return null;
+            } catch(ItemMissingValueException exception){
+                System.out.println("MissingValueException");
+                //return null;
+            }
+        return new Item(itemData);
+
     }
 
 
@@ -51,17 +67,28 @@ public class Parser {
         String[] dataArray = cleanedData.split(";");
         String value = null;
         for(String item : dataArray){
-            if(item.contains(key)){
+            if(item.contains(key)) {
                 String[] itemArray = item.split(":");
-                if(itemArray.length < 2) throw new ItemMissingValueException();
+
+                if (itemArray.length < 2) {
+                    errorCounter++;
+                    throw new ItemMissingValueException();
+                }
+
+                if (value == null) {
+                    errorCounter++;
+                    throw new ItemMissingKeyException();
+                }
                 value = itemArray[1];
-                errorCounter++;
             }
+
         }
-        if(value == null) throw new ItemMissingKeyException();
-        errorCounter++;
+
         return value;
     }
+
+
+
 
     public int getErrorCounter(){
         return errorCounter;

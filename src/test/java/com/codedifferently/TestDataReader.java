@@ -4,6 +4,8 @@ import com.codedifferently.DataReader;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 
 public class TestDataReader {
 
@@ -19,7 +21,7 @@ public class TestDataReader {
         //When
         String expected = "[name:milk;price:3.23;type:food;expiration:1/25/2016" +
                 ", name:bread;price:1.23;type:food;expiration:1/02/2016]";
-        String actual = dataReader.rawDataReader(sampleInput);
+        String actual = Arrays.toString(dataReader.rawDataReader(sampleInput));
 
         Assert.assertEquals(expected, actual);
 
