@@ -21,6 +21,7 @@ public class Main {
         String output = (new Main()).readRawDataToString();
         System.out.println(output);
         String[] cleanedDataArray = DataReader.rawDataReader(output);
+        System.out.println(cleanedDataArray);
         Parser parser = new Parser();
         List<Item> itemList =parser.makeItemList(cleanedDataArray);
 

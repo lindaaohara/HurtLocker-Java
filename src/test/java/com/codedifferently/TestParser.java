@@ -13,8 +13,8 @@ import java.util.HashMap;
 
 public class TestParser {
     private static String sampleCleanedData="name:milk;price:3.23;type:food;expiration:1/04/2016";
-    private static String sampleMissingValue="name:;  price:3.23; type: food; expiration: 1/04/2016";
-    private static String sampleMissingKey= ":milk;price:3.23;type: food;expiration: 1/04/2016";
+    private static String sampleMissingValue="name:;price:3.23;type:food;expiration:1/04/2016";
+    private static String sampleMissingKey= ":milk;price:3.23;type:food;expiration:1/04/2016";
 
     Parser parser;
     @Before
@@ -72,7 +72,7 @@ public class TestParser {
     }
 
     @Test
-    public void makeItemFromString() throws Exception{
+    public void testMakeItemFromString() throws Exception{
         HashMap<String, String> data = new HashMap<>();
         data.put("name", "milk");
         data.put("price", "3.23");
@@ -82,4 +82,5 @@ public class TestParser {
         Item actual = parser.makeItemFromString(sampleCleanedData);
         Assert.assertEquals(expected.toString(), actual.toString());
     }
+
 }
